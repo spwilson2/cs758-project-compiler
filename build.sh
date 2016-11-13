@@ -3,6 +3,7 @@
 export GO_COMPILER="`pwd`/go-compiler"
 export GOROOT_BOOTSTRAP="`pwd`/bootstrap-compiler"
 
+unset TEST_FINAL_COMPILER
 TEST_FINAL_COMPILER="y"
 
 if [ ! -d "$GOROOT_BOOTSTRAP" ] 
@@ -21,10 +22,10 @@ then
         ./make.bash
 fi
 
-if [ "$TEST_FINAL_COMPILER" == "y" ]; then
-    export GOROOT="$GO_COMPILER"
-    export PATH="$GO_COMPILER/bin:$PATH"
+export GOROOT="$GO_COMPILER"
+export PATH="$GO_COMPILER/bin:$PATH"
 
+if [ "$TEST_FINAL_COMPILER" == "y" ]; then
     go tool dist test
-    go run ./my-test.go
+    go run ./mytests/my-test.go
 fi
