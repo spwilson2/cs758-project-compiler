@@ -1,11 +1,14 @@
 #!/bin/bash
 
+
 export GO_COMPILER="`pwd`/go-compiler"
 export GOROOT_BOOTSTRAP="`pwd`/bootstrap-compiler"
 
 unset TEST_FINAL_COMPILER
 TEST_FINAL_COMPILER="y"
 
+
+BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ ! -d "$GOROOT_BOOTSTRAP" ] 
 then 
     curl https://storage.googleapis.com/golang/go1.4-bootstrap-20161024.tar.gz | tar xz 
@@ -27,5 +30,5 @@ export PATH="$GO_COMPILER/bin:$PATH"
 
 if [ "$TEST_FINAL_COMPILER" == "y" ]; then
     go tool dist test
-    go run ./mytests/my-test.go
+    go run $BUILD_DIR/mytests/my-test.go
 fi
