@@ -34,7 +34,7 @@ fi
 
 if [ ! -d "$GO_COMPILER" ]
 then
-    git clone -b "$GO_VERSION" --single-branch "$GO_SOURCE" "$GO_COMPILER"
+    git clone "${GO_COMPILER}${STAGE2_PFX}" "${GO_COMPILER}"
     cd "$GO_COMPILER/src"
 	GOROOT_BOOTSTRAP="${GO_COMPILER}${STAGE2_PFX}" GOROOT="${GO_COMPILER}${STAGE2_PFX}" PATH="${GO_COMPILER}${STAGE2_PFX}/bin:$PATH" ./make.bash
 	cd -
