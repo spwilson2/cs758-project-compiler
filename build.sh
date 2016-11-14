@@ -1,12 +1,14 @@
 #!/bin/bash
 
+unset TEST_FINAL_COMPILER
+# Comment out to avoid testing of the compiler.
+TEST_FINAL_COMPILER="y"
 
 export GO_COMPILER="`pwd`/go-compiler"
 export GOROOT_BOOTSTRAP="`pwd`/bootstrap-compiler"
 
-unset TEST_FINAL_COMPILER
-TEST_FINAL_COMPILER="y"
-
+export GO_VERSION="release-branch.go1.7"
+export GO_SOURCE="https://github.com/golang/go"
 
 BUILD_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 if [ ! -d "$GOROOT_BOOTSTRAP" ] 
@@ -22,7 +24,7 @@ fi
 
 if [ ! -d "$GO_COMPILER" ]
 then
-    git clone https://github.com/golang/go "$GO_COMPILER"
+    git clone -b "$GO_VERSION" --single-branch "$GO_SOURCE" "$GO_COMPILER"
     cd "$GO_COMPILER/src"
 	./make.bash
 	cd -
