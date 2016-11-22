@@ -924,6 +924,12 @@ func Echo(word string) string {
 	return word
 }
 
+//// IoSubmit
+//func IoSubmit(cb Iocb) (err error) {
+//	return Error
+//}
+//sys  IoSubmit(val *Iocb) (err error)
+
 //sys	Madvise(b []byte, advice int) (err error)
 //sys	Mprotect(b []byte, prot int) (err error)
 //sys	Mlock(b []byte) (err error)

@@ -55,6 +55,7 @@ package syscall
 #include <unistd.h>
 #include <ustat.h>
 #include <utime.h>
+#include <linux/aio_abi.h>
 
 enum {
 	sizeofPtr = sizeof(void*),
@@ -388,6 +389,10 @@ type ptracePsw C.ptracePsw
 type ptraceFpregs C.ptraceFpregs
 
 type ptracePer C.ptracePer
+
+// AIO
+
+type Iocb C.struct_iocb
 
 // Misc
 
