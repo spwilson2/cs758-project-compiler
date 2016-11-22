@@ -514,6 +514,10 @@ func TeeReader(r Reader, w Writer) Reader {
 	return &teeReader{r, w}
 }
 
+func Echo(word string) string {
+	return word
+}
+
 type teeReader struct {
 	r Reader
 	w Writer
