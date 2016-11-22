@@ -9,7 +9,7 @@ STAGE2_COMPILER_DOWNLOAD    ?=stage2-compiler
 VANILLA_COMPILER_DOWNLOAD   ?=vanilla-compiler
 
 .PHONY:all
-all: vanilla modded
+all: vanilla build-modded
 
 BOOTSTRAP_COMPILER=$(join ${BOOTSTRAP_COMPILER_DOWNLOAD},/bin/go)
 .PHONY:bootstrap
@@ -44,7 +44,7 @@ ${STAGE2_COMPILER}: ${STAGE2_COMPILER_DOWNLOAD} ${BOOTSTRAP_COMPILER}
 	@echo
 	@echo ##############################
 	@cd "$</src"
-	GOROOT_BOOTSTRAP="$(abspath ${BOOTSTRAP_COMPILER_DOWNLOAD})" ./make.bash
+	CGO_ENABLED=1 GOROOT_BOOTSTRAP="$(abspath ${BOOTSTRAP_COMPILER_DOWNLOAD})" ./make.bash
 
 VANILLA_COMPILER=$(join ${VANILLA_COMPILER_DOWNLOAD},/bin/go)
 .PHONY:vanilla
@@ -62,11 +62,12 @@ ${VANILLA_COMPILER}: ${VANILLA_COMPILER_DOWNLOAD} ${STAGE2_COMPILER}
 	@cd "$</src"
 	@export GOROOT_BOOTSTRAP="$(abspath ${STAGE2_COMPILER_DOWNLOAD})" 
 	@export GOROOT="$$GOROOT_BOOTSTRAP"
-	./make.bash
+	CGO_ENABLED=1 ./make.bash
 
 .PHONY:modded
 MODDED_COMPILER=modded-compiler
-modded: ${MODDED_COMPILER}/bin/go
+modded: |clean-modded ${MODDED_COMPILER}/bin/go
+build-modded: ${MODDED_COMPILER}/bin/go
 
 ${MODDED_COMPILER}/bin/go: ${STAGE2_COMPILER}
 	@echo #############################
@@ -77,7 +78,7 @@ ${MODDED_COMPILER}/bin/go: ${STAGE2_COMPILER}
 	@cd "${MODDED_COMPILER}/src"
 	@export GOROOT_BOOTSTRAP="$(abspath ${STAGE2_COMPILER_DOWNLOAD})" 
 	@export GOROOT="$$GOROOT_BOOTSTRAP"
-	./make.bash
+	CGO_ENABLED=1 ./make.bash
 
 .PHONY:test test-modded test-vanilla
 
@@ -104,6 +105,7 @@ test-modded: ${MODDED_COMPILER}/bin/go
 	set -e
 	go run "${CURDIR}/mytests/modded-smoketest-io.go"
 	go run "${CURDIR}/mytests/modded-smoketest.go"
+	go run "${CURDIR}/mytests/modded-syscall-smoketest.go"
 	echo Passed modded-compiler smoke tests!
 
 .PHONY:clean-modded

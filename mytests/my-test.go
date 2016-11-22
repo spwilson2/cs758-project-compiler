@@ -4,22 +4,16 @@ package main
 // typedef int (*intFunc) ();
 //
 // int
-// bridge_int_func(intFunc f)
+// bridge_int_func()
 // {
-//		printf("Compiler works for cgo!\n");
-//		return f();
-// }
-//
-// int fortytwo()
-// {
-//	    return 42;
+//		/*printf("Compiler works for cgo!\n");*/
+//		return 42;
 // }
 import "C"
 import "fmt"
 
 func main() {
-	f := C.intFunc(C.fortytwo)
-	if 42 != int(C.bridge_int_func(f)) {
+	if 42 != int(C.bridge_int_func()) {
 		fmt.Println("Broken for cgo! :(")
 	}
 }
