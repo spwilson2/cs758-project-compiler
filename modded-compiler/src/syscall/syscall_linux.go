@@ -920,6 +920,10 @@ func Munmap(b []byte) (err error) {
 	return mapper.Munmap(b)
 }
 
+func Echo(word string) string {
+	return word
+}
+
 //sys	Madvise(b []byte, advice int) (err error)
 //sys	Mprotect(b []byte, prot int) (err error)
 //sys	Mlock(b []byte) (err error)

@@ -101,7 +101,14 @@ test-modded-all: ${MODDED_COMPILER}/bin/go
 test-modded: ${MODDED_COMPILER}/bin/go
 	@export GOROOT="$(abspath ${MODDED_COMPILER})"
 	@export PATH="$(abspath $(dir $<)):$$PATH"
+	set -e
+	go run "${CURDIR}/mytests/modded-smoketest-io.go"
 	go run "${CURDIR}/mytests/modded-smoketest.go"
+	echo Passed modded-compiler smoke tests!
+
+.PHONY:clean-modded
+clean-modded:
+	rm -f "${MODDED_COMPILER}/bin/go" 
 
 .PHONY:clean
 clean:

@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"os"
-	"syscall"
 )
 
 func main() {
-	if syscall.Echo("Hello") == "Hello" {
+	if io.Echo("Hello") == "Hello" {
 		fmt.Printf("(OK) %s\n", os.Args[0])
 		os.Exit(0)
 	} else {
