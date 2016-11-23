@@ -928,7 +928,8 @@ func Echo(word string) string {
 // FIXME: int's are longs in syscall.
 //sys  IoCancel(ctx_id AioContext_t, iocb *Iocb, result *IoEvent) (err error)
 //sys  IoDestroy(ctx_id AioContext_t) (err error)
-//sys  IoGetevents(ctx_id AioContext_t, nr int, events *IoEvent, timeout *Timespec) (err error)
+// FIXME: IoGetevents(ctx_id AioContext_t, nr_min int, nr int, events *IoEvent, timeout *Timespec) (err error)
+//sys  IoGetevents(ctx_id AioContext_t, nr_min int, nr int, events *IoEvent, timeout *Timespec) (n int)
 //sys  IoSetup(nr_events uint, ctx_idp *AioContext_t) (err error)
 //sys  IoSubmit(ctx_id AioContext_t, nr int, iocbpp **Iocb) (err error)
 

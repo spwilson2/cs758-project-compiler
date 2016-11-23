@@ -114,9 +114,10 @@ test-modded: ${MODDED_COMPILER}/bin/go
 	@export GOROOT="$(abspath ${MODDED_COMPILER})"
 	@export PATH="$(abspath $(dir $<)):$$PATH"
 	set -e
-	go run "${CURDIR}/mytests/modded-smoketest-io.go"
-	go run "${CURDIR}/mytests/modded-smoketest.go"
-	go run "${CURDIR}/mytests/modded-aio-simple.go"
+	cd "${CURDIR}/mytests/"
+	go run modded-smoketest-io.go
+	go run modded-smoketest.go
+	go run modded-aio-simple.go
 	echo Passed modded-compiler smoke tests!
 
 .PHONY:clean-modded
