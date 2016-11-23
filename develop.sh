@@ -2,7 +2,7 @@
 
 GO_COMPILER_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-if [ "$1" == "devel" ]
+if [ "$1" != "vanilla" ]
 then
 	echo "Using modded go compiler!"
 	export PATH="$GO_COMPILER_DIR/modded-compiler/bin:$PATH"
