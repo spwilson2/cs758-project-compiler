@@ -392,7 +392,28 @@ type ptracePer C.ptracePer
 
 // AIO
 
+/* See /usr/include/linux/aio_abi.h for fields. */
 type Iocb C.struct_iocb
+
+type IoEvent C.struct_io_event
+
+type AioContext_t C.aio_context_t
+
+const (
+	IOCB_CMD_PREAD  = C.IOCB_CMD_PREAD
+	IOCB_CMD_PWRITE = C.IOCB_CMD_PWRITE
+	IOCB_CMD_FSYNC  = C.IOCB_CMD_FSYNC
+	IOCB_CMD_FDSYNC = C.IOCB_CMD_FDSYNC
+	/* These two are experimental.
+	 * IOCB_CMD_PREAD
+	 * IOCB_CMD_POLL
+	 */
+	IOCB_CMD_NOOP    = C.IOCB_CMD_NOOP
+	IOCB_CMD_PREADV  = C.IOCB_CMD_PREADV
+	IOCB_CMD_PWRITEV = C.IOCB_CMD_PWRITEV
+
+	IOCB_FLAG_RESFD = C.IOCB_FLAG_RESFD
+)
 
 // Misc
 

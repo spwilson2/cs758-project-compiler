@@ -66,10 +66,10 @@ ${VANILLA_COMPILER}: ${VANILLA_COMPILER_DOWNLOAD} ${STAGE2_COMPILER}
 
 .PHONY:modded
 MODDED_COMPILER=modded-compiler
-modded: |clean-modded ${MODDED_COMPILER}/bin/go
+modded: |clean-modded update-modded-defs ${MODDED_COMPILER}/bin/go
 build-modded: ${MODDED_COMPILER}/bin/go
 
-${MODDED_COMPILER}/bin/go: update-modded-defs ${STAGE2_COMPILER}
+${MODDED_COMPILER}/bin/go: ${STAGE2_COMPILER}
 	@printf "##################################\n"
 	@printf "                                  \n"
 	@printf "Building the modded compiler.     \n"
@@ -116,8 +116,7 @@ test-modded: ${MODDED_COMPILER}/bin/go
 	set -e
 	go run "${CURDIR}/mytests/modded-smoketest-io.go"
 	go run "${CURDIR}/mytests/modded-smoketest.go"
-	go run "${CURDIR}/mytests/modded-aio-smoketest.go"
-	go run "${CURDIR}/mytests/modded-syscall-smoketest.go"
+	go run "${CURDIR}/mytests/modded-aio-simple.go"
 	echo Passed modded-compiler smoke tests!
 
 .PHONY:clean-modded

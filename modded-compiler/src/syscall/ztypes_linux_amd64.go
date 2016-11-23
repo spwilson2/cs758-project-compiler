@@ -564,6 +564,28 @@ type Iocb struct {
 	Resfd      uint32
 }
 
+type IoEvent struct {
+	Data uint64
+	Obj  uint64
+	Res  int64
+	Res2 int64
+}
+
+type AioContext_t uint64
+
+const (
+	IOCB_CMD_PREAD  = 0x0
+	IOCB_CMD_PWRITE = 0x1
+	IOCB_CMD_FSYNC  = 0x2
+	IOCB_CMD_FDSYNC = 0x3
+
+	IOCB_CMD_NOOP    = 0x6
+	IOCB_CMD_PREADV  = 0x7
+	IOCB_CMD_PWRITEV = 0x8
+
+	IOCB_FLAG_RESFD = 0x1
+)
+
 type FdSet struct {
 	Bits [16]int64
 }

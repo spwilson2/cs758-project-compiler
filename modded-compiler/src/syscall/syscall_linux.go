@@ -924,11 +924,13 @@ func Echo(word string) string {
 	return word
 }
 
-//// IoSubmit
-//func IoSubmit(cb Iocb) (err error) {
-//	return Error
-//}
-//sys  IoSubmit(val *Iocb) (err error)
+// see related man pages; e.g. man io_submit
+// FIXME: int's are longs in syscall.
+//sys  IoCancel(ctx_id AioContext_t, iocb *Iocb, result *IoEvent) (err error)
+//sys  IoDestroy(ctx_id AioContext_t) (err error)
+//sys  IoGetevents(ctx_id AioContext_t, nr int, events *IoEvent, timeout *Timespec) (err error)
+//sys  IoSetup(nr_events uint, ctx_idp *AioContext_t) (err error)
+//sys  IoSubmit(ctx_id AioContext_t, nr int, iocbpp **Iocb) (err error)
 
 //sys	Madvise(b []byte, advice int) (err error)
 //sys	Mprotect(b []byte, prot int) (err error)
