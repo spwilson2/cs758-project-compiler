@@ -21,7 +21,7 @@ func cleanup(ctx syscall.AioContext_t) {
 // https://git.fedorahosted.org/cgit/libaio.git/tree/src/libaio.h
 // for implementations of these helpers.
 //
-//func io_prep_pread(iocb *syscall.Iocb, fd int, buf unsafe.Pointer, count uintptr, offset uint64)
+//func io_prep_pread(iocb *syscall.Iocb, fd int, buf []byte, count int, offset uint)
 //{
 //	// TODO: Clear out the iocb
 //	// memset(iocb, 0, sizeof(*iocb));
