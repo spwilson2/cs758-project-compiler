@@ -56,8 +56,7 @@ ${VANILLA_COMPILER}: ${VANILLA_COMPILER_DOWNLOAD} ${STAGE2_COMPILER}
 	@printf "Building the vanilla compiler.    \n"
 	@printf "                                  \n"
 	@printf "##################################\n"
-	@cd "$</src"
-	@export GOROOT_BOOTSTRAP="$(abspath ${STAGE2_COMPILER_DOWNLOAD})"; export GOROOT="$$GOROOT_BOOTSTRAP"; CGO_ENABLED=1 ./make.bash
+	@cd "$</src"; export GOROOT_BOOTSTRAP="$(abspath ${STAGE2_COMPILER_DOWNLOAD})"; export GOROOT="$(abspath ${STAGE2_COMPILER_DOWNLOAD})"; CGO_ENABLED=1 ./make.bash
 
 .PHONY:modded
 MODDED_COMPILER=modded-compiler
