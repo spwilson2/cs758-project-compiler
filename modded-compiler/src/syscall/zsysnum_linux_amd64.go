@@ -330,7 +330,4 @@ const (
 	SYS_USERFAULTFD            = 323
 	SYS_MEMBARRIER             = 324
 	SYS_MLOCK2                 = 325
-	SYS_COPY_FILE_RANGE        = 326
-	SYS_PREADV2                = 327
-	SYS_PWRITEV2               = 328
 )

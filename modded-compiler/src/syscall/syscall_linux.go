@@ -927,9 +927,9 @@ func Echo(word string) string {
 // see related man pages; e.g. man io_submit
 //sys  IoCancel(ctx_id AioContext_t, iocb *Iocb, result *IoEvent) (err error)
 //sys  IoDestroy(ctx_id AioContext_t) (err error)
-//sys  IoGetevents(ctx_id AioContext_t, nr_min int, nr int, events *IoEvent, timeout *Timespec) (n int)
+//sys  IoGetevents(ctx_id AioContext_t, nr_min int, nr int, events *IoEvent, timeout *Timespec) (n int, err error)
 //sys  IoSetup(nr_events uint, ctx_idp *AioContext_t) (err error)
-//sys  IoSubmit(ctx_id AioContext_t, nr int, iocbpp **Iocb) (err error)
+//sys  IoSubmit(ctx_id AioContext_t, nr int, iocbpp **Iocb) (n int, err error)
 
 //sys	Madvise(b []byte, advice int) (err error)
 //sys	Mprotect(b []byte, prot int) (err error)
